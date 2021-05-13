@@ -66,7 +66,8 @@ def read_metrics():
     try:
         resp = requests.get("https://%s/system/epochproof" %nginx_endpoint, verify=False, auth=HTTPBasicAuth("admin", nginx_passwd))
         json_data = resp.json()
-        gauges["sigs_count"].set(len(json_data["sigs"])),
+        gauges["sigs_count"].set(len(json_data["sigs"]))
+        gauges["sigs_is_included"].set(1 if node_id in [x["address"] for x in json_data["sigs"]] else 0)
         gauges["header_nextValidators_is_included"].set(1 if node_id in [x["address"] for x in json_data["header"]["nextValidators"]] else 0)                                                              
         gauges["header_nextValidators_count"].set(len(json_data["header"]["nextValidators"]))
         gauges["header_nextValidators_stake_min"].set(min([float(x["stake"]) / 1e18 for x in json_data["header"]["nextValidators"]]))

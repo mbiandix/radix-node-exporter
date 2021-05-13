@@ -6,6 +6,7 @@ metrics = [
     ("up", "the status of the node (1=running, 0=down, -1=connection issue, -2=node error)"),
     ("peers_count", "how many peers the node is seeing"),
     ("sigs_count", "how many nodes are currently validating"),
+    ("sigs_is_included", "if the node is currently validating"),
     ("header_nextValidators_count", "how many nodes are in the validators set for the next epoch"),
     ("header_nextValidators_is_included", "if the node is included in the next validators set"),
     ("header_nextValidators_stake_min", "the smallest amount of total stake in the validators set for the next epoch"),
